@@ -18,7 +18,7 @@
           };
         };
         packages = rec {
-          hello = pkgs.stdenv.mkDerivation rec {
+          run-web-server = pkgs.stdenv.mkDerivation rec {
             name = "run-web-server";
 
             src = ./.;
@@ -40,12 +40,12 @@
               chmod +x $out/bin/run-web-server
             '';
           };
-          default = hello;
+          default = run-web-server;
         };
 
         apps = rec {
-          hello = flake-utils.lib.mkApp { drv = self.packages.${system}.hello; };
-          default = hello;
+          run-web-server = flake-utils.lib.mkApp { drv = self.packages.${system}.run-web-server; };
+          default = run-web-server;
         };
       }
     );
